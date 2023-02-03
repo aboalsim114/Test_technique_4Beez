@@ -54,7 +54,7 @@ function App() {
         Header: "Details",
         accessor: "id",
         Cell: ({ cell: { value } }) => (
-          <Link to="/item">
+          <Link to={`/item/${value}`}>
             <button>Details</button>
           </Link>
         ),
