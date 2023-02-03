@@ -164,6 +164,76 @@ td {
     border: 2px solid #F7F7F7;
 }
 
+.banner {
+    border: 2px solid black;
+    width: 100%;
+    height: 284px;
+    border-radius: 15px;
+    background-color: grey;
+}
+
+.Img-item {
+    border: 2px solid black;
+    width: 210px;
+    height: 304px;
+    position: absolute;
+    left: 30px;
+    top: 177px;
+    z-index: 100;
+    background-color: #F7F7F7;
+    border-radius: 20px;
+}
+
+.content {
+    border: 2px solid black;
+    width: 79%;
+    max-width: 89%;
+    height: 282px;
+    padding: 10px;
+    position: absolute;
+    left: 245px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.itemTitre {
+    border: 1px solid grey;
+    width: 100%;
+    height: 5rem;
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 41px;
+}
+
+.btnFavorisItem {
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+}
+
+.description {
+    border: 2px solid black;
+    width: 100%;
+    height: 162px;
+    overflow-y: scroll;
+    padding: 2px;
+    word-break: break-all;
+}
+
+#itembtnretour {
+    position: absolute;
+    width: auto;
+    padding: 9px 20px;
+    top: 35px;
+    left: -90px;
+    background: #4334C8;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
 @media (min-width: 1000px) and (max-width: 1200px) {
     .container {
         width: 90%;
