@@ -1,8 +1,16 @@
-import React, { useState } from "react";
-
+import React, { useState,useEffect } from "react";
+import { BsHeartHalf,BsSearch } from "react-icons/bs"; 
+import axios from "axios"
 const Filter = ({ onFilterChange }) => {
   const [Année, setAnnée] = useState("");
   const [age, setAge] = useState("");
+  const [data , setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://kitsu.io/api/edge/anime`)
+      .then(res => setData(res.data.data));
+  }, []);
 
   const handleAnnéeChange = (event) => {
     setAnnée(event.target.value);
@@ -18,7 +26,7 @@ const Filter = ({ onFilterChange }) => {
     <div className="filter">
       <input
         type="text"
-        placeholder=" &#x1F50D; Rechercher"
+        placeholder=" Rechercher"
         name="search"
         id="search"
       />
@@ -33,11 +41,11 @@ const Filter = ({ onFilterChange }) => {
           <option defaultValue disabled>
             Année
           </option>
-          <option value="pdf">PDF</option>
-          <option value="txt">txt</option>
-          <option value="epub">ePub</option>
-          <option value="fb2">fb2</option>
-          <option value="mobi">mobi</option>
+          {
+            data.map((date) => (
+              <option key={date.id} value={date.attributes.startDate}>{date.attributes.startDate} </option>
+            ))
+          }
         </select>
       </div>
 
@@ -46,11 +54,11 @@ const Filter = ({ onFilterChange }) => {
           <option defaultValue disabled>
             Âge recommandé
           </option>
-          <option value="pdf">PDF</option>
-          <option value="txt">txt</option>
-          <option value="epub">ePub</option>
-          <option value="fb2">fb2</option>
-          <option value="mobi">mobi</option>
+          {
+            data.map((date) => (
+              <option key={date.id} value={date.attributes.ageRatingGuide}>{date.attributes.ageRatingGuide} </option>
+            ))
+          }
         </select>
       </div>
     </div>

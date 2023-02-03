@@ -146,6 +146,22 @@ option:active {
     padding: 9px 20px;
     color: #FFFFFF;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 20px;
+}
+
+#addToFavorisItem {
+    border: 2px solid #4334C8;
+    border-radius: 10px;
+    padding: 9px 20px;
+    width: 194px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 table {
@@ -159,20 +175,22 @@ table {
     display: table;
 }
 
+.icon {
+    font-size: 20px;
+}
+
 th,
 td {
     border: 2px solid #F7F7F7;
 }
 
-.banner {
-    border: 2px solid black;
+.banner>img {
     width: 100%;
     height: 284px;
     border-radius: 15px;
-    background-color: grey;
 }
 
-.Img-item {
+.Img-item>img {
     border: 2px solid black;
     width: 210px;
     height: 304px;
@@ -185,7 +203,6 @@ td {
 }
 
 .content {
-    border: 2px solid black;
     width: 79%;
     max-width: 89%;
     height: 282px;
@@ -195,29 +212,28 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    gap: 15px;
 }
 
 .itemTitre {
-    border: 1px solid grey;
     width: 100%;
     height: 5rem;
     font-family: 'Satoshi';
     font-style: normal;
     font-weight: 700;
     line-height: 41px;
+    display: flex;
+    flex-direction: row;
 }
 
 .btnFavorisItem {
-    border: 1px solid black;
     width: auto;
     height: auto;
 }
 
 .description {
-    border: 2px solid black;
     width: 100%;
-    height: 162px;
-    overflow-y: scroll;
+    height: auto;
     padding: 2px;
     word-break: break-all;
 }
@@ -232,6 +248,14 @@ td {
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {

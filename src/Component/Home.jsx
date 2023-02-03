@@ -5,8 +5,7 @@ import axios from "axios";
 /* import { BrowserRouter as Router, Route } from "react-router-dom"; */
 import { Link } from "react-router-dom";
 import Item from "./Item";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { BsHeartHalf,BsSearch } from "react-icons/bs"; 
 function App() {
   const [data, setData] = useState([]);
 
@@ -102,7 +101,7 @@ function App() {
           </tbody>
         </table>
 
-        <button id="add_favo">Voir les favoris ❤</button>
+        <button id="add_favo">Voir les favoris <BsHeartHalf className="icon" /></button>
       </div>
     </>
   );
