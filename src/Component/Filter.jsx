@@ -38,7 +38,7 @@ const Filter = ({ onFilterChange }) => {
           id="format"
           onChange={handleAnnéeChange}
         >
-          <option defaultValue disabled>
+          <option defaultValue  disabled>
             Année
           </option>
           {

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Item from "./Item";
 import { BsHeartHalf,BsSearch } from "react-icons/bs"; 
+import { BiShow } from "react-icons/bi";
 function App() {
   const [data, setData] = useState([]);
 
@@ -50,11 +51,11 @@ function App() {
           (row.attributes && row.attributes.ratingRank) || "Pas disponible",
       },
       {
-        Header: "Details",
+        Header: " ",
         accessor: "id",
         Cell: ({ cell: { value } }) => (
           <Link to={`/item/${value}`}>
-            <button>Details</button>
+            <button className="showBtn"> Voir les détails  </button>
           </Link>
         ),
       },

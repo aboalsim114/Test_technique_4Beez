@@ -1,10 +1,12 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai"; 
-import { BsArrow90DegLeft } from "react-icons/bs";
+import { BsArrow90DegLeft,BsHeartHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ReactLoading from 'react-loading';
+
 
 
 const Item = () => {
@@ -20,16 +22,18 @@ const Item = () => {
 
   return (
     <div className="container">
+       
+
       <div className="banner">
       <Link to={`/`}>
         <button id="itembtnretour"> <BsArrow90DegLeft className="icon"/> Retourner au catalogue</button>
  </Link>
-        <img src={itemData.attributes && itemData.attributes.coverImage.original
+        <img src={itemData.attributes && itemData.attributes.coverImage
           ? itemData.attributes.coverImage.original :  <ReactLoading type="spin" color="blue" height={50} width={50} />
           } alt="" srcset="" />
       </div>
       <div className="Img-item">
-      <img src={itemData.attributes && itemData.attributes.posterImage.original
+      <img src={itemData.attributes && itemData.attributes.posterImage
           ? itemData.attributes.posterImage.original :  <ReactLoading type="spin" color="blue" height={50} width={50} />
           } alt="" srcset="" />
       </div>
@@ -45,13 +49,14 @@ const Item = () => {
           
         </div>
         <div className="btnFavorisItem">
-          <button id="addToFavorisItem">Ajouter aux favoris <AiOutlineHeart className="icon"/></button>
+          <button  id="addToFavorisItem">Ajouter aux favoris <AiOutlineHeart className="icon"/></button>
         </div>
         <div className="description">
           <p>{itemData.attributes && itemData.attributes.description
           ? itemData.attributes.description :  <ReactLoading type="spin" color="blue" height={50} width={50} />
           }</p>
         </div>
+      <button id="add_favo">Voir les favoris <BsHeartHalf className="icon" /></button>
       </div>
     </div>
   );
