@@ -325,7 +325,7 @@ td {
     margin-top: 3%;
 }
 
-.FavorisCard {
+.FavorisCard>img {
     border: 1px solid black;
     width: 228.23px;
     height: 375.15px;

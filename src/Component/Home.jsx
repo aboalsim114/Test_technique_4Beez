@@ -1,70 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import Filter from "./Filter";
-import axios from "axios";
-/* import { BrowserRouter as Router, Route } from "react-router-dom"; */
 import { Link } from "react-router-dom";
-import Item from "./Item";
-import { BsHeartHalf,BsSearch } from "react-icons/bs"; 
-import { BiShow } from "react-icons/bi";
-function Home() {
-  const [data, setData] = useState([]);
+import { BsHeartHalf } from "react-icons/bs";
 
-  useEffect(() => {
-    let url = "https://kitsu.io/api/edge/anime";
-
-    axios
-      .get(url)
-      .then((res) => {
-        setData(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
+function Home({ data, setData }) {
   const columns = React.useMemo(
     () => [
       {
         Header: "Titre",
-        accessor: (row) =>
-          (row.attributes && row.attributes.titles.en) || "Pas disponible",
+        accessor: row =>
+          (row.attributes && row.attributes.titles.en) || "Pas disponible"
       },
       {
         Header: "Titre en japonnais",
-        accessor: (row) =>
-          (row.attributes && row.attributes.titles.ja_jp) || "Pas disponible",
+        accessor: row =>
+          (row.attributes && row.attributes.titles.ja_jp) || "Pas disponible"
       },
       {
         Header: "Age recommandé",
-        accessor: (row) =>
-          (row.attributes && row.attributes.ageRatingGuide) || "Pas disponible",
+        accessor: row =>
+          (row.attributes && row.attributes.ageRatingGuide) || "Pas disponible"
       },
       {
         Header: "Date de sortie",
-        accessor: (row) =>
-          (row.attributes && row.attributes.startDate) || "Pas disponible",
+        accessor: row =>
+          (row.attributes && row.attributes.startDate) || "Pas disponible"
       },
       {
         Header: "Rang",
-        accessor: (row) =>
-          (row.attributes && row.attributes.ratingRank) || "Pas disponible",
+        accessor: row =>
+          (row.attributes && row.attributes.ratingRank) || "Pas disponible"
       },
       {
         Header: " ",
         accessor: "id",
         Cell: ({ cell: { value } }) => (
           <Link to={`/item/${value}`}>
-            <button className="showBtn"> Voir les détails  </button>
+            <button className="showBtn"> Voir les détails </button>
           </Link>
-        ),
-      },
+        )
+      }
     ],
     []
   );
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy);
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow
+  } = useTable({ columns, data }, useSortBy);
 
   return (
     <>
@@ -73,9 +59,9 @@ function Home() {
         <h1 id="Catalogue">Catalogue</h1>
         <table {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => (
+            {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
+                {headerGroup.headers.map(column => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
                     <span>
@@ -102,7 +88,9 @@ function Home() {
           </tbody>
         </table>
         <Link to={`/favoris`}>
-        <button id="add_favo">Voir les favoris <BsHeartHalf className="icon" /></button>
+          <button id="add_favo">
+            Voir les favoris <BsHeartHalf className="icon" />
+          </button>
         </Link>
       </div>
     </>
