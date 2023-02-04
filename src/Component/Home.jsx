@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Item from "./Item";
 import { BsHeartHalf,BsSearch } from "react-icons/bs"; 
 import { BiShow } from "react-icons/bi";
-function App() {
+function Home() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -101,11 +101,12 @@ function App() {
             })}
           </tbody>
         </table>
-
+        <Link to={`/favoris`}>
         <button id="add_favo">Voir les favoris <BsHeartHalf className="icon" /></button>
+        </Link>
       </div>
     </>
   );
 }
 
-export default App;
+export default Home;

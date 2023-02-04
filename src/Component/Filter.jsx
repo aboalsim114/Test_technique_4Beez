@@ -1,10 +1,12 @@
-import React, { useState,useEffect } from "react";
-import { BsHeartHalf,BsSearch } from "react-icons/bs"; 
+import React, { useState, useEffect } from "react";
+import { BsSearch } from "react-icons/bs"; 
 import axios from "axios"
+
 const Filter = ({ onFilterChange }) => {
   const [Année, setAnnée] = useState("");
   const [age, setAge] = useState("");
-  const [data , setData] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
@@ -14,21 +16,29 @@ const Filter = ({ onFilterChange }) => {
 
   const handleAnnéeChange = (event) => {
     setAnnée(event.target.value);
-    onFilterChange(age, event.target.value);
+    onFilterChange(age, event.target.value, searchValue);
   };
 
   const handleAgeChange = (event) => {
     setAge(event.target.value);
-    onFilterChange(event.target.value, Année);
+    onFilterChange(event.target.value, Année, searchValue);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+    onFilterChange(age, Année, event.target.value);
   };
 
   return (
     <div className="filter">
+      
       <input
         type="text"
-        placeholder=" Rechercher"
+        placeholder="Rechercher"
         name="search"
         id="search"
+        value={searchValue}
+        onChange={handleSearchChange}
       />
 
       <div className="select">
@@ -38,7 +48,7 @@ const Filter = ({ onFilterChange }) => {
           id="format"
           onChange={handleAnnéeChange}
         >
-          <option defaultValue  disabled>
+          <option defaultValue disabled>
             Année
           </option>
           {

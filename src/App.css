@@ -152,7 +152,8 @@ option:active {
     line-height: 20px;
 }
 
-#addToFavorisItem {
+#addToFavorisItem,
+.addToFavorisItem {
     border: 2px solid #4334C8;
     border-radius: 10px;
     padding: 9px 20px;
@@ -267,6 +268,68 @@ td {
     align-items: center;
     gap: 10px;
     border: none;
+}
+
+#itembtnretourFavoris {
+    padding: 9px 10px;
+    background: #4334C8;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+}
+
+.favorited {
+    border-radius: 10px;
+    padding: 9px 20px;
+    width: 194px;
+    cursor: pointer;
+    background-color: #4334C8;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Favoris {
+    width: 60rem;
+    height: auto;
+    padding: 9px 20px;
+    margin: 3% auto;
+    position: relative;
+}
+
+.FavorisHeader {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.FavorisBody {
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 87px;
+    padding: 9px 20px;
+    margin-top: 3%;
+}
+
+.FavorisCard {
+    border: 1px solid black;
+    width: 228.23px;
+    height: 375.15px;
+    border-radius: 20px;
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
