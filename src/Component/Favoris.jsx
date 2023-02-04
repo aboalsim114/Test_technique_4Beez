@@ -16,10 +16,12 @@ export default function Favoris({ data }) {
       <div className="FavorisBody">
         {data.map((fav) => (
           <div className="FavorisCard">
-            <img
-              src={fav.attributes.posterImage.large}
+             
+            <img className="FavorisCardImg"
+              src={fav.attributes.posterImage.original}
               alt={fav.attributes.titles.en || fav.attributes.titles.en_jp}
-            />
+              />
+             
             
            
           </div>

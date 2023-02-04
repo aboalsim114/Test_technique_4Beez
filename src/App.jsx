@@ -5,7 +5,7 @@ import Home from "./Component/Home";
 import Item from "./Component/Item";
 import NotFound from "./Component/NotFound";
 import Favoris from "./Component/Favoris";
-import "./App.css";
+import "./App.scss";
 
 const url = "https://kitsu.io/api/edge/anime";
 
