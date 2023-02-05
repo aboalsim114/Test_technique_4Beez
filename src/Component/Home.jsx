@@ -81,29 +81,6 @@ function Home({ data, setData }) {
 
 
 
-/*   const handleFilter = (Année, age, searchValue) => {
-    setAnnée(Année);
-    setAge(age);
-    setSearchValue(searchValue);
-
-    let filteredData = [...data];
-
-    if (Année) {
-      filteredData = filteredData.filter(item => item.attributes.startDate === Année);
-    }
-
-    if (age) {
-      filteredData = filteredData.filter(item => item.attributes.ageRatingGuide === age);
-    }
-
-    if (searchValue) {
-      filteredData = filteredData.filter(item => item.attributes.titles.en.toLowerCase().includes(searchValue.toLowerCase()));
-    }
-
-    
-
-    setFilteredData(filteredData);
-  }; */
 
 
 
