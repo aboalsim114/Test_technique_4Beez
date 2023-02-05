@@ -19,19 +19,17 @@ const Filter = ({ onFilterChange }) => {
     setAnnée(event.target.value);
     onFilterChange(age, event.target.value, searchValue);
   };
-
+  
   const handleAgeChange = (event) => {
     setAge(event.target.value);
     onFilterChange(event.target.value, Année, searchValue);
   };
-
+  
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
-  
-    const filteredData = data.filter(item => item.attributes.titles.en_jp.toLowerCase().includes(event.target.value.toLowerCase()));
-    
-    onFilterChange(age, Année, filteredData);
+    onFilterChange(age, Année, event.target.value);
   };
+  
   
 
   return (

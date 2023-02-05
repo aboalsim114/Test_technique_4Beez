@@ -4,8 +4,39 @@ import { useTable, useSortBy } from "react-table";
 import Filter from "./Filter";
 import { Link } from "react-router-dom";
 import { BsHeartHalf } from "react-icons/bs";
-
+import axios from "axios";
 function Home({ data, setData }) {
+
+
+
+
+
+  const [Année, setAnnée] = useState("");
+  const [age, setAge] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredData, setFilteredData] = useState(data);
+
+  
+  const handleFilter = (newAge, newAnnée, newSearchValue) => {
+    setAge(newAge);
+    setAnnée(newAnnée);
+    setSearchValue(newSearchValue);
+  };
+
+
+
+  useEffect(() => {
+    const filteredData = data.filter(
+      item =>
+        (Année === "" || item.attributes.startDate === Année) &&
+        (age === "" || item.attributes.ageRatingGuide === age) &&
+        (searchValue === "" ||
+          (item.attributes.titles && item.attributes.titles.en && item.attributes.titles.en.toLowerCase().includes(searchValue.toLowerCase())))
+    );
+    
+    setFilteredData(filteredData);
+  }, [Année, age, searchValue, data]);
+
   
   // Définir les colonnes de la table
   const columns = React.useMemo(
@@ -47,20 +78,49 @@ function Home({ data, setData }) {
     ],
     []
   );
+
+
+
+/*   const handleFilter = (Année, age, searchValue) => {
+    setAnnée(Année);
+    setAge(age);
+    setSearchValue(searchValue);
+
+    let filteredData = [...data];
+
+    if (Année) {
+      filteredData = filteredData.filter(item => item.attributes.startDate === Année);
+    }
+
+    if (age) {
+      filteredData = filteredData.filter(item => item.attributes.ageRatingGuide === age);
+    }
+
+    if (searchValue) {
+      filteredData = filteredData.filter(item => item.attributes.titles.en.toLowerCase().includes(searchValue.toLowerCase()));
+    }
+
+    
+
+    setFilteredData(filteredData);
+  }; */
+
+
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow
-  } = useTable({ columns, data }, useSortBy);
+  } = useTable({ columns, data: filteredData }, useSortBy);
 
   return (
     <>
       <div className="container">
-        <Filter onFilterChange={() => {}} />
+      <Filter  onFilterChange={handleFilter}  />
         <h1 id="Catalogue">Catalogue</h1>
-        <table {...getTableProps()}>
+        <table data={data} {...getTableProps()}>
           <thead>
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
