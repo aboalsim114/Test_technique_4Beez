@@ -43,7 +43,7 @@ const Filter = ({ onFilterChange }) => {
         value={searchValue}
         onChange={handleSearchChange}
         />
-        <BsSearch className=" icon-search"/>
+       
 
       <div className="select">
         <select
