@@ -69,10 +69,14 @@ const Filter = ({ onFilterChange }) => {
             Âge recommandé
           </option>
           {
-            data.map((date) => (
-              <option key={date.id} value={date.attributes.ageRatingGuide}>{date.attributes.ageRatingGuide} </option>
-            ))
-          }
+  data.filter(date => date.attributes.ageRatingGuide)
+    .map(date => (
+      <option key={date.id} value={date.attributes.ageRatingGuide}>
+        {date.attributes.ageRatingGuide}
+      </option>
+    ))
+}
+
         </select>
       </div>
     </div>
