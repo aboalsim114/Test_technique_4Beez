@@ -15,6 +15,7 @@ export default function Favoris({ data }) {
       </div>
       <div className="FavorisBody">
         {data.map((fav) => (
+          <Link to={`/item/${fav.id}`}>
           <div className="FavorisCard">
              
             <img className="FavorisCardImg"
@@ -25,6 +26,7 @@ export default function Favoris({ data }) {
             
            
           </div>
+              </Link>
         ))}
       </div>
     </div>

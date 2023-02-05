@@ -7,7 +7,7 @@ import NotFound from "./Component/NotFound";
 import Favoris from "./Component/Favoris";
 import "./App.scss";
 
-const url = "https://kitsu.io/api/edge/anime";
+const url = "https://kitsu.io/api/edge/trending/anime";
 
 function App() {
   const [data, setData] = useState([]);

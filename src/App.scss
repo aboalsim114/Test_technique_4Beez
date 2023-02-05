@@ -54,15 +54,24 @@ body {
 }
 
 #search {
+    position: relative;
     width: 384px;
     height: 48px;
     background: #FFFFFF;
     border: none;
     border-radius: 8px;
     padding: 10px, 16px, 10px, 16px;
+    padding-left: 40px;
+    gap: 16px;
     &:focus {
         outline: none;
     }
+}
+
+.icon-search {
+    position: absolute;
+    left: 60px;
+    color: #4334C8;
 }
 
 select {
@@ -359,6 +368,30 @@ td {
         height: 375.15px;
         border-radius: 20px;
     }
+}
+
+.itemTitre>h1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 15px;
+}
+
+.itemTitre>h1>hr {
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background: #4334C8;
+}
+
+.itemTitre>h1>span {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    color: #4334C8;
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {

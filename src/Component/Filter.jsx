@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BsSearch } from "react-icons/bs"; 
+
 import axios from "axios"
 
 const Filter = ({ onFilterChange }) => {
@@ -10,7 +11,7 @@ const Filter = ({ onFilterChange }) => {
 
   useEffect(() => {
     axios
-      .get(`https://kitsu.io/api/edge/anime`)
+      .get(`https://kitsu.io/api/edge/trending/anime`)
       .then(res => setData(res.data.data));
   }, []);
 
@@ -26,8 +27,12 @@ const Filter = ({ onFilterChange }) => {
 
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
-    onFilterChange(age, Année, event.target.value);
+  
+    const filteredData = data.filter(item => item.attributes.titles.en_jp.toLowerCase().includes(event.target.value.toLowerCase()));
+    
+    onFilterChange(age, Année, filteredData);
   };
+  
 
   return (
     <div className="filter">
@@ -39,7 +44,8 @@ const Filter = ({ onFilterChange }) => {
         id="search"
         value={searchValue}
         onChange={handleSearchChange}
-      />
+        />
+        <BsSearch className=" icon-search"/>
 
       <div className="select">
         <select

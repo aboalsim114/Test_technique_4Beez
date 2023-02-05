@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import Filter from "./Filter";
@@ -5,6 +6,7 @@ import { Link } from "react-router-dom";
 import { BsHeartHalf } from "react-icons/bs";
 
 function Home({ data, setData }) {
+  
   // Définir les colonnes de la table
   const columns = React.useMemo(
     () => [

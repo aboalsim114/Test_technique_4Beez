@@ -62,6 +62,12 @@ const Item = ({ data, updateOneItem }) => {
             ) : (
               <ReactLoading type="spin" color="blue" height={50} width={50} />
             )}
+            <hr />
+            <span>Rang <sup>{itemData.attributes && itemData.attributes.ratingRank ? (
+              itemData.attributes.ratingRank
+            ) : (
+              <ReactLoading type="spin" color="blue" height={50} width={50} />
+            )}</sup></span>
           </h1>
         </div>
         <div className="btnFavorisItem">
