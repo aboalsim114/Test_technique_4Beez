@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import Filter from "./Filter";
+import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
 import { BsHeartHalf } from "react-icons/bs";
 import axios from "axios";
@@ -15,13 +16,96 @@ function Home({ data, setData }) {
   const [age, setAge] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage, setDataPerPage] = useState(5);
 
+
+
+
+
+// Définir les colonnes de la table
+const columns = React.useMemo(
+  () => [
+    {
+      Header: "Titre",
+      accessor: row =>
+        (row.attributes && row.attributes.titles.en) || "Pas disponible"
+    },
+    {
+      Header: "Titre en japonnais",
+      accessor: row =>
+        (row.attributes && row.attributes.titles.ja_jp) || "Pas disponible"
+    },
+    {
+      Header: "Age recommandé",
+      accessor: row =>
+        (row.attributes && row.attributes.ageRatingGuide) || "Pas disponible"
+    },
+    {
+      Header: "Date de sortie",
+      accessor: row =>
+        (row.attributes && row.attributes.startDate) || "Pas disponible"
+    },
+    {
+      Header: "Rang",
+      accessor: row =>
+        (row.attributes && row.attributes.ratingRank) || "Pas disponible"
+    },
+    {
+      Header: " ",
+      accessor: "id",
+      Cell: ({ cell: { value } }) => (
+        <Link to={`/item/${value}`}>
+          <button className="showBtn"> Voir les détails </button>
+        </Link>
+      )
+    }
+  ],
+  []
+);
+
+
+
+
+
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow
+  } = useTable({ columns, data: data }, useSortBy);
+ 
+
+  // Get current data
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = rows.slice(indexOfFirstData, indexOfLastData);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   
   const handleFilter = (newAge, newAnnée, newSearchValue) => {
     setAge(newAge);
     setAnnée(newAnnée);
     setSearchValue(newSearchValue);
   };
+
+
+
+  useEffect(() => {
+    // Make a new API request based on the updated filter values
+    axios
+    .get(`https://api.example.com/data?age=${age}&year=${Année}&search=${searchValue}`)
+    .then(response => {
+    setData(response.data);
+    })
+    .catch(error => {
+    console.error(error);
+    });
+    }, [Année, age, searchValue]);
 
 
 
@@ -38,67 +122,24 @@ function Home({ data, setData }) {
   }, [Année, age, searchValue, data]);
 
   
-  // Définir les colonnes de la table
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Titre",
-        accessor: row =>
-          (row.attributes && row.attributes.titles.en) || "Pas disponible"
-      },
-      {
-        Header: "Titre en japonnais",
-        accessor: row =>
-          (row.attributes && row.attributes.titles.ja_jp) || "Pas disponible"
-      },
-      {
-        Header: "Age recommandé",
-        accessor: row =>
-          (row.attributes && row.attributes.ageRatingGuide) || "Pas disponible"
-      },
-      {
-        Header: "Date de sortie",
-        accessor: row =>
-          (row.attributes && row.attributes.startDate) || "Pas disponible"
-      },
-      {
-        Header: "Rang",
-        accessor: row =>
-          (row.attributes && row.attributes.ratingRank) || "Pas disponible"
-      },
-      {
-        Header: " ",
-        accessor: "id",
-        Cell: ({ cell: { value } }) => (
-          <Link to={`/item/${value}`}>
-            <button className="showBtn"> Voir les détails </button>
-          </Link>
-        )
-      }
-    ],
-    []
-  );
+  
 
 
 
 
 
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow
-  } = useTable({ columns, data: filteredData }, useSortBy);
+ 
 
   return (
     <>
       <div className="container">
       <Filter  onFilterChange={handleFilter}  />
         <h1 id="Catalogue">Catalogue</h1>
+      
         <table data={data} {...getTableProps()}>
           <thead>
+            
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
@@ -113,7 +154,7 @@ function Home({ data, setData }) {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {rows.map((row, index) => {
+            {currentData.map((row, index) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()}>
@@ -125,7 +166,13 @@ function Home({ data, setData }) {
                 </tr>
               );
             })}
+              <Pagination
+          dataPerPage={dataPerPage}
+          totalData={rows.length}
+          handlePageChange={handlePageChange}
+        />
           </tbody>
+        
         </table>
         <Link to={`/favoris`}>
           <button id="add_favo">
