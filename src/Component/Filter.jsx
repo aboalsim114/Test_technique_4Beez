@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BsSearch } from "react-icons/bs"; 
 
 import axios from "axios"
-
 const Filter = ({ onFilterChange }) => {
   const [Année, setAnnée] = useState("");
   const [age, setAge] = useState("");
@@ -11,9 +10,9 @@ const Filter = ({ onFilterChange }) => {
 
   useEffect(() => {
     axios
-      .get(`https://kitsu.io/api/edge/trending/anime`)
+      .get(`https://kitsu.io/api/edge/trending/anime?filter[start_date]=${Année}&filter[age_rating]=${age}&filter[text]=${searchValue}`)
       .then(res => setData(res.data.data));
-  }, []);
+  }, [Année, age, searchValue]);
 
   const handleAnnéeChange = (event) => {
     setAnnée(event.target.value);
@@ -29,7 +28,6 @@ const Filter = ({ onFilterChange }) => {
     setSearchValue(event.target.value);
     onFilterChange(age, Année, event.target.value);
   };
-  
   
 
   return (
@@ -82,5 +80,6 @@ const Filter = ({ onFilterChange }) => {
     </div>
   );
 };
+
 
 export default Filter;

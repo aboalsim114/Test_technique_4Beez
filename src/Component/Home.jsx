@@ -23,46 +23,46 @@ function Home({ data, setData }) {
 
 
 
-// Définir les colonnes de la table
-const columns = React.useMemo(
-  () => [
-    {
-      Header: "Titre",
-      accessor: row =>
-        (row.attributes && row.attributes.titles.en) || "Pas disponible"
-    },
-    {
-      Header: "Titre en japonnais",
-      accessor: row =>
-        (row.attributes && row.attributes.titles.ja_jp) || "Pas disponible"
-    },
-    {
-      Header: "Age recommandé",
-      accessor: row =>
-        (row.attributes && row.attributes.ageRatingGuide) || "Pas disponible"
-    },
-    {
-      Header: "Date de sortie",
-      accessor: row =>
-        (row.attributes && row.attributes.startDate) || "Pas disponible"
-    },
-    {
-      Header: "Rang",
-      accessor: row =>
-        (row.attributes && row.attributes.ratingRank) || "Pas disponible"
-    },
-    {
-      Header: " ",
-      accessor: "id",
-      Cell: ({ cell: { value } }) => (
-        <Link to={`/item/${value}`}>
-          <button className="showBtn"> Voir les détails </button>
-        </Link>
-      )
-    }
-  ],
-  []
-);
+  // Définir les colonnes de la table
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Titre",
+        accessor: row =>
+          (row.attributes && row.attributes.titles.en) || "Pas disponible"
+      },
+      {
+        Header: "Titre en japonnais",
+        accessor: row =>
+          (row.attributes && row.attributes.titles.ja_jp) || "Pas disponible"
+      },
+      {
+        Header: "Age recommandé",
+        accessor: row =>
+          (row.attributes && row.attributes.ageRatingGuide) || "Pas disponible"
+      },
+      {
+        Header: "Date de sortie",
+        accessor: row =>
+          (row.attributes && row.attributes.startDate) || "Pas disponible"
+      },
+      {
+        Header: "Rang",
+        accessor: row =>
+          (row.attributes && row.attributes.ratingRank) || "Pas disponible"
+      },
+      {
+        Header: " ",
+        accessor: "id",
+        Cell: ({ cell: { value } }) => (
+          <Link to={`/item/${value}`}>
+            <button className="showBtn"> Voir les détails </button>
+          </Link>
+        )
+      }
+    ],
+    []
+  );
 
 
 
@@ -75,8 +75,8 @@ const columns = React.useMemo(
     headerGroups,
     rows,
     prepareRow
-  } = useTable({ columns, data: data }, useSortBy);
- 
+  } = useTable({ columns, data: filteredData }, useSortBy);
+
 
   // Get current data
   const indexOfLastData = currentPage * dataPerPage;
@@ -86,7 +86,7 @@ const columns = React.useMemo(
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-  
+
   const handleFilter = (newAge, newAnnée, newSearchValue) => {
     setAge(newAge);
     setAnnée(newAnnée);
@@ -95,17 +95,7 @@ const columns = React.useMemo(
 
 
 
-  useEffect(() => {
-    // Make a new API request based on the updated filter values
-    axios
-    .get(`https://api.example.com/data?age=${age}&year=${Année}&search=${searchValue}`)
-    .then(response => {
-    setData(response.data);
-    })
-    .catch(error => {
-    console.error(error);
-    });
-    }, [Année, age, searchValue]);
+
 
 
 
@@ -117,29 +107,29 @@ const columns = React.useMemo(
         (searchValue === "" ||
           (item.attributes.titles && item.attributes.titles.en && item.attributes.titles.en.toLowerCase().includes(searchValue.toLowerCase())))
     );
-    
+
     setFilteredData(filteredData);
   }, [Année, age, searchValue, data]);
 
-  
-  
 
 
 
 
 
 
- 
+
+
+
 
   return (
     <>
       <div className="container">
-      <Filter  onFilterChange={handleFilter}  />
+        <Filter onFilterChange={handleFilter} />
         <h1 id="Catalogue">Catalogue</h1>
-      
+
         <table data={data} {...getTableProps()}>
           <thead>
-            
+
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
@@ -166,13 +156,13 @@ const columns = React.useMemo(
                 </tr>
               );
             })}
-              <Pagination
-          dataPerPage={dataPerPage}
-          totalData={rows.length}
-          handlePageChange={handlePageChange}
-        />
+            <Pagination
+              dataPerPage={dataPerPage}
+              totalData={rows.length}
+              handlePageChange={handlePageChange}
+            />
           </tbody>
-        
+
         </table>
         <Link to={`/favoris`}>
           <button id="add_favo">
