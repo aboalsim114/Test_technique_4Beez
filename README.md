@@ -8,7 +8,7 @@ Ce projet utilise React pour créer  mini application sur le thème des animés 
  - Afficher les informations sur les animés, y compris le titre en anglais et japonais, l'âge recommandé, la date de sortie et le rang 
  - Filtrer les données en fonction de la date de sortie, de l'âge recommandé et de la recherche par nom
  - Pagination pour afficher les données par page
- - Possibilité de consulter les détails d'un jeu en cliquant sur un bouton
+ - Possibilité de consulter les détails  en cliquant sur un bouton
  - Affichage d'un bouton pour consulter les Favoris
 
 
