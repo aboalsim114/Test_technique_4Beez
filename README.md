@@ -9,7 +9,7 @@ Ce projet utilise React pour créer  mini application sur le thème des animés 
  - Filtrer les données en fonction de la date de sortie, de l'âge recommandé et de la recherche par nom
  - Pagination pour afficher les données par page
  - Possibilité de consulter les détails d'un jeu en cliquant sur un bouton
- - Affichage d'un bouton pour consulter les jeux vidéo préférés
+ - Affichage d'un bouton pour consulter les Favoris
 
 
 
